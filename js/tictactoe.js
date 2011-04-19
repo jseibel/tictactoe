@@ -7,21 +7,25 @@ $(document).ready(function() {
   function(){
     $(this).find('img').attr("src", "http://localhost/img/empty.png");
   });
-  $("td.empty").click(function(event) {
+  $("td.empty").click(function() {
     $(this).find('img').attr("src", "http://localhost/img/o.png");
     //$(this).find
     var space = $(this).attr("id");
     var base = "http://localhost/index.php/startgame/play/";
-    var url = base.concat(space,"/");
+    var game_id = $("table.gameboard").attr("game_id");
+    var url = base.concat(game_id,"/",space);
+ //   var output = ("<p>").concat(url,"</p>");
+
+ //   $(".JSoutput")
+
 
     $.ajax({
         method: "get",
         url: url,
-        beforeSend: function(){
+        success: function(html){
                 window.location.reload(true);
             }
     });
     
-    event.preventDefault();
   });
 });

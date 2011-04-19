@@ -5,12 +5,12 @@
     <link rel="stylesheet" type="text/css" href="<?php echo $base.$css."game.css";?>" media="screen" />
     <script src="http://localhost/js/jquery.min.js" type="text/javascript" ></script>
     <script src="http://localhost/js/tictactoe.js" type="text/javascript" ></script>
-    <script src="http://localhost/js/prototype.js" type="text/javascript" ></script>
+    <!-- <script src="http://localhost/js/prototype.js" type="text/javascript" ></script> -->
 </head>
 <body>
     <h1><?php echo "Make a move!";?></h1>
     <center>
-    <table class="gameboard">
+    <table class="gameboard" game_id="<?=$game_id?>" >
         <?php $count = 0;?>
         <?php foreach ($board as $tile){
             $col = $count % 3;
@@ -49,6 +49,7 @@
         ?>
     </table>
     </center>
+    <div class="JS_output"></div>
 </body>
 </html>
 

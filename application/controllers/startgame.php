@@ -50,11 +50,20 @@ class Startgame extends CI_Controller {
 
         $data['base'] = $this->base;
         $data['css'] = $this->css;
-
+        $data['game_id'] = $game_id;
         $this->load->view('game',$data);
     }
 
+    public function play($game_id,$space){
+        $this->game->make_play($game_id,$space);
+        echo "TESTTESTTEST";
+        return "<html>Success!</html>";
+    }
 
+    public function reset(){
+        $this->game->reset_db();
+        echo "DB RESET";
+    }
 
 }
 
