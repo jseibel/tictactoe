@@ -43,7 +43,7 @@ $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'root';
-$db['default']['password'] = 'fishtaco';
+$db['default']['password'] = '$corch8#';
 $db['default']['database'] = 'tictactoe';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';

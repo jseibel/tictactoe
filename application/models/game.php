@@ -69,6 +69,7 @@ class Game extends CI_Model {
             return false;
         }
         $location = ((int)$space[0]) - 97 + ((int)$space[1]) - 1;
+        assert ($location == 0);
 
         $row = $query->row_array();
         $moves = $row['moves'];
