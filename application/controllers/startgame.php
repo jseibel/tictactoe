@@ -3,12 +3,15 @@ class Startgame extends CI_Controller {
 
     var $base;
     var $css;
+    var $color_array;
 
     public function __construct(){
         parent::__construct();
         $this->base = $this->config->item('base_url');
         $this->css = $this->config->item('css');
         $this->load->model('game');
+
+        $this->color_array = array("black","red","blue","green","yellow");
 
     }
 
@@ -40,13 +43,16 @@ class Startgame extends CI_Controller {
 
     public function view($game_id){
         $this->load->helper('html');
-        $data = $this->game->get_board_moves($game_id);
+        $data = $this->game->getGameData($game_id);
         if (!$data['board']){
             $data['error'] = true;
         }else{
             $data['error'] = false;
         }
         //$data['board'] = $game_data['board'];
+        
+        $data['colX'] = $this->getColorNumToString((int)$data['colX']);
+        $data['colO'] = $this->getColorNumToString((int)$data['colO']);
 
         $data['base'] = $this->base;
         $data['css'] = $this->css;
@@ -56,8 +62,8 @@ class Startgame extends CI_Controller {
 
     public function play($game_id,$space){
         $this->game->make_play($game_id,$space);
-        echo "TESTTESTTEST";
-        return "<html>Success!</html>";
+        //echo "TESTTESTTEST";
+        //return "<html>Success!</html>";
     }
 
     public function reset(){
@@ -65,6 +71,10 @@ class Startgame extends CI_Controller {
         echo "DB RESET";
     }
 
+    private function getColorNumToString($color_num){
+        return $this->color_array[$color_num];
+    }
+  
 }
 
 ?>
