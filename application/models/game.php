@@ -206,7 +206,7 @@ class Game extends CI_Model {
       $data['moves'] = $first_move;
       $data['players'] = "";
       $data['colX'] = $colX;
-      $data['colO'] = $col0;
+      $data['colO'] = $colO;
       $data['complete'] = '0';
       $data['winner'] = '0';
 
