@@ -2,6 +2,16 @@
 class Game extends CI_Model {
     public function __construct(){
         parent::__construct();
+        $this->db->query("CREATE TABLE IF NOT EXISTS gametrack(
+                            id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+                            PRIMARY KEY(id),
+                            moves VARCHAR(100),
+                            players VARCHAR(100),
+                            colX INT,
+                            colO INT,
+                            complete BOOLEAN,
+                            winner INT
+                        )");
 
                             
     }

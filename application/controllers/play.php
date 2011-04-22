@@ -6,32 +6,22 @@ class Play extends CI_Controller {
     var $color_array;
 
     public function __construct(){
-        parent::__construct();
+        parent::__constuct();
         $this->base = $this->config->item('base_url');
         $this->css = $this->config->item('css');
         $this->load->model('game');
+        //$this->load->model('session_model');
 
         $this->color_array = array("black","red","blue","green","yellow");
 
     }
 
     public function index(){
-        $this->load->library('menu');
-        $mymenu = $this->menu->show_menu();
-        $data['menu'] = $mymenu;
-        $this->load->view('start',$data);
+//      if ($this->session->userdata('survey_info'){
+//      }
 
-    
     }
 
-    public function hello($name = 'Guest'){
-        $data['css'] = $this->css;
-        $data['base'] = $this->base;
-        $data['myTitle'] = 'Welcome to the site';
-        $data['text'] = "Hello, $name, now were cooking with gas!";
-        $this->load->view('testview',$data);
-        
-    }
 
     public function newgame(){
       $game_id = $this->game->createNewGame();
@@ -62,7 +52,7 @@ class Play extends CI_Controller {
         $this->load->view('game',$data);
     }
 
-    public function play($game_id,$space){
+    public function makePlay($game_id,$space){
         $this->game->make_play($game_id,$space);
     }
 

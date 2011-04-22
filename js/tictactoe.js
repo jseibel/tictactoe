@@ -18,7 +18,7 @@ $(document).ready(function() {
             $(this).find('img').attr("src", "http://localhost/img/o.png");
           }
         var space = $(this).attr("id");
-        var base = "http://localhost/index.php/startgame/play/";
+        var base = "http://localhost/index.php/play/makeplay/";
         var game_id = $("table.gameboard").attr("game_id");
         var url = base.concat(game_id,"/",space);
 
