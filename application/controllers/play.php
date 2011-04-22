@@ -1,5 +1,5 @@
 <?php
-class Startgame extends CI_Controller {
+class Play extends CI_Controller {
 
     var $base;
     var $css;
@@ -34,10 +34,12 @@ class Startgame extends CI_Controller {
     }
 
     public function newgame(){
-        $query = $this->db->get('gametrack');
-        $data['query'] = $query;
+      $game_id = $this->game->createNewGame();
+      //$game_id = 1;
+      $this->load->helper('url');
+      //echo "test";
         
-        $this->load->view('testdb', $data);
+      redirect("/play/view/$game_id");
     
     }
 
@@ -62,8 +64,6 @@ class Startgame extends CI_Controller {
 
     public function play($game_id,$space){
         $this->game->make_play($game_id,$space);
-        //echo "TESTTESTTEST";
-        //return "<html>Success!</html>";
     }
 
     public function reset(){
