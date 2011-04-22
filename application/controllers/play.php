@@ -11,6 +11,8 @@ class Play extends CI_Controller {
         $this->css = $this->config->item('css');
         $this->load->model('game');
         $this->load->model('session_model');
+        $this->load->helper('html');
+        $this->load->helper('form');
 
         $this->color_array = array("black","red","blue","green","yellow");
 
@@ -34,22 +36,27 @@ class Play extends CI_Controller {
     }
 
     public function view($game_id){
-        $this->load->helper('html');
-        $data = $this->game->getGameData($game_id);
-        if (!$data['board']){
-            $data['error'] = true;
-        }else{
-            $data['error'] = false;
-        }
-        //$data['board'] = $game_data['board'];
-        
-        $data['colX'] = $this->getColorNumToString((int)$data['colX']);
-        $data['colO'] = $this->getColorNumToString((int)$data['colO']);
+      $this->load->helper('html');
+      $data = $this->game->getGameData($game_id);
+      if (!$data['board']){
+          $data['error'] = true;
+      }else{
+          $data['error'] = false;
+      }
 
-        $data['base'] = $this->base;
-        $data['css'] = $this->css;
-        $data['game_id'] = $game_id;
-        $this->load->view('game',$data);
+      if ($this->session_model->checkSurvey($this->session->userdata('session_id'))){
+        $data['take_survey'] = "n";
+      }else{
+        $data['take_survey'] = "y";
+      }
+      
+      $data['colX'] = $this->getColorNumToString((int)$data['colX']);
+      $data['colO'] = $this->getColorNumToString((int)$data['colO']);
+
+      $data['base'] = $this->base;
+      $data['css'] = $this->css;
+      $data['game_id'] = $game_id;
+      $this->load->view('game',$data);
     }
 
     public function makePlay($game_id,$space){
@@ -63,6 +70,19 @@ class Play extends CI_Controller {
 
     private function getColorNumToString($color_num){
         return $this->color_array[$color_num];
+    }
+
+
+    public function surveyresults(){
+      $form_data = $this->input->post();
+      $this->load->library('survey_handler');
+      $to_store = $this->survey_handler->rawToCompress($form_data);
+//      $this->session->set_userdata('survey_info',$to_store);
+      $this->session_model->inputSurveyInfo($to_store);
+
+      $this->load->helper('url');
+      redirect("/play/view/1");
+
     }
   
 }

@@ -64,7 +64,28 @@
         ?>
     </table>
     </center>
-    <div class="JS_output"></div>
+    <div id="survey" complete="<?=$take_survey?>">
+      <div>
+      <h2>Survey</h2>
+        <?php 
+    
+            echo form_open('play/surveyresults');
+            echo form_label('Gender','Gender');
+            echo br(1);
+            echo form_radio('Gender','1',FALSE);
+            echo "Male";
+            echo br(1);
+            echo form_radio('Gender','2',FALSE);
+            echo "Female";
+            echo br(2);
+            echo form_submit('sendresults','Finished');
+            echo form_close();
+
+
+        ?>
+    </div>
+    </div>
+
 </body>
 </html>
 

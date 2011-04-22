@@ -1,4 +1,8 @@
 $(document).ready(function() {
+  if ($("#survey").attr("complete") == "n"){
+    $("#survey").hide();
+
+  };
   
   if ($("table.gameboard").attr("complete") == "0"){
       $("td.empty").hover(function() {

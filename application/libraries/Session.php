@@ -262,9 +262,11 @@ class CI_Session {
 			$custom_userdata = $this->_serialize($custom_userdata);
 		}
 
+
+
 		// Run the update query
 		$this->CI->db->where('session_id', $this->userdata['session_id']);
-		$this->CI->db->update($this->sess_table_name, array('last_activity' => $this->userdata['last_activity'], 'user_data' => $custom_userdata));
+		$this->CI->db->update($this->sess_table_name, array('last_activity' => $this->userdata['last_activity']));
 
 		// Write the cookie.  Notice that we manually pass the cookie data array to the
 		// _set_cookie() function. Normally that function will store $this->userdata, but
