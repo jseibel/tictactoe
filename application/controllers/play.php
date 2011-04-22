@@ -6,11 +6,11 @@ class Play extends CI_Controller {
     var $color_array;
 
     public function __construct(){
-        parent::__constuct();
+        parent::__construct();
         $this->base = $this->config->item('base_url');
         $this->css = $this->config->item('css');
         $this->load->model('game');
-        //$this->load->model('session_model');
+        $this->load->model('session_model');
 
         $this->color_array = array("black","red","blue","green","yellow");
 
